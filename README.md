@@ -14,8 +14,21 @@ Step 2: Download and install this iOS shortcuts: [Convert Content from Cantonese
 
 Step 3: Copy blog.js to some directory inside iCloud drive
 
+Step 4: Do the following steps inside OmniOutliner document:
+
+![Step 1](./SetupStep1.jpeg)
+
+![Step 2](./SetupStep2.jpeg)
+
+![Step 3](./SetupStep3.jpeg)
+
+Then you should see the script with `blog` appears here.
+
+![Step 4](./SetupStep4.jpeg)
 
 
 ## How to use this tool
 
-Open OmniOutliner, and see below video.
+Open OmniOutliner with the document you wants to export to Ulysses, and see below video to follow the steps.
+
+![Step 5](./RunStep.gif)
