@@ -1,0 +1,45 @@
+/*{
+ "type": "action",
+ "targets": ["omnioutliner"],
+ "author": "Roulesophy",
+ "description": "Create a markdown compatible format from the current document, transform from Cantonese to Chinese and copy to clipboard or export to Ulysses (by Shortcuts app).",
+ "label": "Clipboard / Ulysses New Draft with Markdown format",
+ "paletteLabel": "Clipboard Doc"
+}*/
+
+var _ = function() {
+  var action = new PlugIn.Action(function(selection, sender){
+    var topics = new Array()
+    topics.push('# ' + document.name + '\n')
+    rootItem.descendants.forEach(function(item){
+        level = item.level
+        if (item.hasChildren) {
+            itemString = '#' + '#'.repeat(level) + " > " + item.topic
+        } else {
+            itemString = item.topic
+        }
+
+        topics.push(itemString)
+
+        noteString = ''
+        if(item.note) {
+            noteString = noteString + item.note + '\n'
+        }
+        topics.push(noteString)
+    })
+    topics.join('\n')
+    encodedStr = encodeURIComponent(topics.join("\n"))
+
+    // run "Share 口語轉書面語 to Ulysses" in shortcut
+    urlStr = "shortcuts://run-shortcut?name=Share%20%E5%8F%A3%E8%AA%9E%E8%BD%89%E6%9B%B8%E9%9D%A2%E8%AA%9E%20to%20Ulysses&input=" + encodedStr
+    url = URL.fromString(urlStr)
+    url.call(function(result){console.log(result)})
+  });
+
+  action.validate = function(selection, sender){
+    if(rootItem.descendants.length > 0){return true} else {return false}
+  }
+
+  return action
+}();
+_;
